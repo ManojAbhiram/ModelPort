@@ -1,0 +1,59 @@
+name: Bug report
+description: Report a reproducible problem using synthetic, non-sensitive inputs.
+title: '[Bug] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include API keys, authorization headers, environment dumps, account IDs,
+        private prompts, recordings, audio, images or other sensitive media.
+        Use synthetic inputs and sanitized errors. Do not make paid calls to file a report.
+        For a suspected vulnerability, follow SECURITY.md and use a private reporting
+        route; do not disclose exploit details here.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: This report contains no credentials or private prompts/audio/media.
+          required: true
+        - label: This is not a public disclosure of a suspected security vulnerability.
+          required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Version or commit
+      description: Include the local revision if known; do not paste repository credentials.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Node/npm version, browser, and development or production-build mode.
+    validations:
+      required: true
+  - type: input
+    id: operation
+    attributes:
+      label: Provider and operation
+      description: Provider ID and text/vision/image/stt/tts/embedding, or not applicable. No account IDs.
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Use fake values and synthetic input. Describe steps without attaching private files.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+      description: Include only sanitized error messages. Avoid full HTTP traces and provider dashboards.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Checks performed
+      description: List offline commands/results or explain what was not tested. A live test is not required.

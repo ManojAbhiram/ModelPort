@@ -1,0 +1,29 @@
+{
+  "name": "modelport",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A local-first, approval-gated workbench and SDK for multimodal AI integrations.",
+  "license": "MIT",
+  "engines": { "node": ">=22.12.0" },
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "dev": "npm run build --workspace @modelport/core && concurrently --kill-others -n core,api,web \"npm run dev --workspace @modelport/core\" \"npm run dev --workspace @modelport/server\" \"npm run dev --workspace @modelport/web\"",
+    "build": "npm run build --workspace @modelport/core && npm run build --workspace @modelport/web && npm run build --workspace @modelport/server",
+    "start": "npm run start --workspace @modelport/server",
+    "typecheck": "npm run build --workspace @modelport/core && npm run typecheck --workspaces --if-present && tsc -p tsconfig.tests.json",
+    "pretest": "npm run build --workspace @modelport/core",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "@types/node": "^22.0.0",
+    "concurrently": "10.0.7",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
+  }
+}

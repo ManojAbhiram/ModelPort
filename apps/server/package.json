@@ -1,0 +1,20 @@
+{
+  "name": "@modelport/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --include ../../packages/core/dist/**/*.js src/index.ts --dev",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@modelport/core": "0.1.0",
+    "fastify": "5.12.8",
+    "@fastify/static": "10.1.11",
+    "@fastify/rate-limit": "11.2.2",
+    "@fastify/helmet": "13.2.0",
+    "zod": "4.6.7"
+  }
+}
