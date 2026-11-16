@@ -17,7 +17,7 @@ Start with the **Mock demo** in the app: no API key or provider calls, just a cl
 
 Use ModelPort for deliberate integration experiments on your workstation. Production automation, hosted team administration, and durable experiment history are outside the current scope.
 
-**V1 preview:** the SDK, adapters, workbench, and skill are implemented, with offline contract and browser tests. This is not a production security certification, a published npm package announcement, or a claim that live provider calls have passed. The [provider matrix](docs/PROVIDERS.md) describes adapter coverage; the registry in `packages/core` is the runtime source of truth.
+**Preview:** the SDK, adapters, workbench, and skill are implemented, with offline contract and browser tests. This is not a production security certification, a published npm package announcement, or a claim that live provider calls have passed. The [provider matrix](docs/PROVIDERS.md) describes adapter coverage; the registry in `packages/core` is the runtime source of truth.
 
 ## Start Locally
 
@@ -65,11 +65,11 @@ These are six operations across the registry, **not six operations on every prov
 
 The [provider matrix](docs/PROVIDERS.md) owns the detailed coverage and source links. Enterprise AWS Bedrock, Azure and Vertex integrations, and providers requiring additional specialist job handling, remain explicit roadmap entries where the registry says `planned`.
 
-V1 does not provide realtime audio, microphone streaming, streamed generation, tool execution, remote input URLs, arbitrary model downloads, fine-tuning, or asynchronous specialist image/video jobs. An unsupported ModelPort operation is not a claim that the vendor lacks that operation.
+ModelPort does not currently provide realtime audio, microphone streaming, streamed generation, tool execution, remote input URLs, arbitrary model downloads, fine-tuning, or asynchronous specialist image/video jobs. An unsupported ModelPort operation is not a claim that the vendor lacks that operation.
 
 ## Limits And Data
 
-| Boundary | V1 limit |
+| Boundary | Current limit |
 | --- | --- |
 | Text input | 16,000 characters |
 | Output token setting | Default 512; maximum 4,096 for `text` and `vision` only |

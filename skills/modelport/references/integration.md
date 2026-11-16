@@ -1,6 +1,6 @@
 # Server-Side Integration
 
-Use this reference after inspecting the target product and the installed SDK version. These examples describe the V1 public contract, not a public npm availability claim or a complete authenticated HTTP application.
+Use this reference after inspecting the target product and the installed SDK version. These examples describe the current public contract, not a public npm availability claim or a complete authenticated HTTP application.
 
 ## State Ownership
 
@@ -103,4 +103,4 @@ A metadata result has `inferenceTested: false`. Authentication, reachability and
 
 One inference can run at a time per SDK instance. Approvals expire within five minutes; at most eight pending requests and 12 MiB of retained input strings are held. Disconnect, successful refresh and model declaration invalidate relevant pending approvals. Do not automatically recreate them.
 
-There is no streaming or in-flight cancellation API in V1. `cancel()` removes a pending approval, and `dispose()` forgets managed state; neither promises to stop an already-dispatched provider call. A timeout can still incur charges. Stop, explain the uncertain state and obtain a new human decision before any new attempt.
+There is currently no streaming or in-flight cancellation API. `cancel()` removes a pending approval, and `dispose()` forgets managed state; neither promises to stop an already-dispatched provider call. A timeout can still incur charges. Stop, explain the uncertain state and obtain a new human decision before any new attempt.
