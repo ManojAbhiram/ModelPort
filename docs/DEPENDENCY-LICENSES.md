@@ -78,7 +78,7 @@ This is declared package metadata, not a legal clearance or a review of source f
 | @types/chai | 5.2.3 | MIT | Development | No |
 | @types/deep-eql | 4.0.2 | MIT | Development | No |
 | @types/estree | 1.0.10 | MIT | Development | No |
-| @types/node | 22.20.5 | MIT | Development | No |
+| @types/node | 26.6.6 | MIT | Development | No |
 | @types/react | 19.3.0 | MIT | Runtime/build | No |
 | @types/react-dom | 19.3.0 | MIT | Development | No |
 | @typescript/typescript-aix-ppc64 | 7.0.2 | Apache-2.0 | Development | Yes |
@@ -221,7 +221,7 @@ This is declared package metadata, not a legal clearance or a review of source f
 | tslib | 2.9.1 | 0BSD | Development | No |
 | tsx | 4.23.15 | MIT | Development | No |
 | typescript | 7.0.2 | Apache-2.0 | Development | No |
-| undici-types | 6.21.0 | MIT | Development | No |
+| undici-types | 8.9.0 | MIT | Development | No |
 | vite | 8.3.8 | MIT | Development | No |
 | vitest | 5.1.0 | MIT | Development | No |
 | why-is-node-running | 3.2.1 | MIT | Development | No |

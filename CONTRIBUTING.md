@@ -75,6 +75,8 @@ Document user-visible limits and unsupported operations alongside the implementa
 
 New dependencies require a concrete purpose, license review, a lockfile update, and a check for install scripts and security advisories. Registry/model metadata must never select packages to install or code to execute.
 
+After any dependency or lockfile update, including a Dependabot PR, run `npm run licenses:report` and commit the refreshed `docs/DEPENDENCY-LICENSES.md` alongside the update. CI regenerates this file and fails if it differs from the committed inventory. When browser runtime libraries change, also run `npm run build` and commit any updated `apps/web/public/THIRD_PARTY_NOTICES.txt` after reviewing the license texts.
+
 ## Reports And Pull Requests
 
 Use a minimal synthetic reproduction. Include the affected operation, adapter, platform, Node/npm versions, expected behavior, observed behavior and sanitized errors. Do not attach raw prompts, audio, images, environment dumps, authorization headers, account IDs or provider dashboards.
