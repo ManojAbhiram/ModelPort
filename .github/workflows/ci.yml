@@ -37,6 +37,11 @@ jobs:
         run: npm ci
       - name: Type-check, unit-test and build
         run: npm run check
+      - name: Refresh declared dependency licenses and inspect SDK packaging
+        run: |
+          npm run licenses:report
+          npm run package:preview
+          git diff --exit-code -- docs/DEPENDENCY-LICENSES.md apps/web/public/THIRD_PARTY_NOTICES.txt packages/core/LICENSE
       - name: Install Chromium and system dependencies
         run: npx playwright install --with-deps chromium
       - name: Test browser flows with mocked API responses

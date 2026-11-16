@@ -29,9 +29,10 @@ export function ProviderLibrary({ providers, connections, onConnect }: Props) {
   return <div className="page provider-page">
     <section className="library-hero" aria-labelledby="library-title">
       <div>
-        <p className="eyebrow">The provider library</p>
-        <h1 id="library-title" tabIndex={-1}>Many models.<br /><em>One starting point.</em></h1>
-        <p className="page-intro">Bring your own keys. Discover what each model can do.<br className="desktop-break" /> Take the first step without sending a prompt.</p>
+        <p className="eyebrow">Your local AI request workbench</p>
+        <h1 id="library-title" tabIndex={-1}>Inspect. Test.<br /><em>Approve.</em></h1>
+        <p className="page-intro">Inspect, test, and approve AI API requests locally.<br className="desktop-break" /> Bring your own key and review what you send before each run.</p>
+        <p><a className="button button-secondary" href="#demo">Try the mock demo — no key needed<ArrowRight size={16} aria-hidden="true" /></a></p>
       </div>
       <div className="hero-aside">
         <span className="hero-aside-label">A more deliberate workflow</span>

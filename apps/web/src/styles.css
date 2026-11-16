@@ -446,7 +446,7 @@ input[type='checkbox'] { width: 17px; height: 17px; margin: 0; accent-color: var
   .brand img { width: 34px; height: 34px; }
   .brand-caption { font-size: 10px; }
   .sidebar-section-label, .sidebar-note, .sidebar-footer { display: none; }
-  .main-nav { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .main-nav { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
   .main-nav a { justify-content: center; min-height: 44px; padding: 11px 8px; font-size: 12px; }
   .main-nav a[aria-current='page']::before { top: auto; bottom: 0; left: 28%; right: 28%; height: 2px; width: auto; }
   .nav-count { display: none; }
@@ -581,3 +581,8 @@ input[type='checkbox'] { width: 17px; height: 17px; margin: 0; accent-color: var
   .main-nav a[aria-current='page'] { outline: 2px solid Highlight; }
   .status-dot { background: CanvasText; }
 }
+.run-artifacts { margin-top: 20px; padding: 20px; border: 1px solid var(--line); border-radius: 6px; min-width: 0; }
+.run-artifacts summary { cursor: pointer; font-weight: 600; }
+.run-artifacts > p { font-size: 12px; line-height: 1.7; color: var(--muted); }
+.run-artifacts pre, .guide-section pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.approval-facts code { overflow-wrap: anywhere; }

@@ -45,7 +45,7 @@ Copy-Item -Recurse skills/modelport/* .kilo/skills/modelport/`;
 export function IntegrationGuide() {
   return <div className="page guide-page">
     <div className="page-heading"><p className="eyebrow">From workbench to product</p><h1 tabIndex={-1}>Your interface.<br /><em>The same deliberate foundation.</em></h1><p className="page-intro">Use the SDK behind your application, or give your coding agent the integration skill. Keep the approval boundary wherever you build.</p></div>
-    <div className="guide-intro-strip"><Code2 size={23} strokeWidth={1.5} aria-hidden="true" /><p>A framework-independent TypeScript SDK, a local workbench, and an installable skill. <strong>One explicit approval model.</strong></p></div>
+    <div className="guide-intro-strip"><Code2 size={23} strokeWidth={1.5} aria-hidden="true" /><p>Start in the workbench. After a response, expand <strong>Use this request in your project</strong> for request-specific TypeScript and a JSON record. Content is excluded by default; review metadata before sharing.</p></div>
 
     <section className="guide-section" aria-labelledby="sdk-heading">
       <div className="guide-section-heading"><span className="guide-number">01</span><div><h2 id="sdk-heading">Bring the SDK to your server.</h2><p>The example uses the <code>@modelport/core</code> workspace package. It does not assume a public npm release.</p></div></div>

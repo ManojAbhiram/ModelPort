@@ -56,7 +56,7 @@ async function mockProviders(page: Page, initialConnections: Connection[] = []) 
       const providerName = PROVIDERS.find((item) => item.id === connection.providerId)?.name ?? connection.providerId;
       const approval: Approval = {
         id: approvalId, connectionId: connection.id, providerId: connection.providerId, providerName, modelId: input.modelId,
-        operation: input.operation, capabilitySource: 'provider', verificationState: 'authenticated',
+        operation: input.operation, destination: connection.baseUrl, capabilitySource: 'provider', verificationState: 'authenticated',
         createdAt: new Date().toISOString(), expiresAt: new Date(Date.now() + 300_000).toISOString(),
         inputPreview: input.text || 'Audio upload', inputCharacters: input.text?.length || 0,
         mediaBytes: input.media ? Buffer.from(input.media.data, 'base64').length : 0,
@@ -98,13 +98,17 @@ test('real local workbench boots without any provider credential or horizontal o
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Many models.');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Inspect. Test.');
   await expect(page.getByRole('button', { name: 'Connect OpenAI', exact: true })).toBeVisible();
   await expect(page.getByText('Local session active', { exact: true })).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   expect(overflow).toBe(false);
   expect(errors).toEqual([]);
   await page.screenshot({ path: testInfo.outputPath('provider-library.png'), fullPage: true });
+  await page.screenshot({ path: testInfo.outputPath('workbench-overview.png') });
+  const notices = await page.request.get('/THIRD_PARTY_NOTICES.txt');
+  expect(notices.ok()).toBe(true);
+  expect(await notices.text()).toContain('Cole Bemis');
 });
 
 test('filters real providers and separates roadmap entries from executable adapters', async ({ page }) => {
@@ -117,6 +121,64 @@ test('filters real providers and separates roadmap entries from executable adapt
   await page.getByRole('radio', { name: /^Roadmap/ }).check();
   await expect(page.getByRole('heading', { name: 'AWS Bedrock', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Connect AWS Bedrock', exact: true })).toHaveCount(0);
+});
+
+test('mock walkthrough needs no key and never prepares or executes a real request', async ({ page }, testInfo) => {
+  const state = await mockProviders(page);
+  const writes: string[] = [];
+  page.on('request', (request) => { if (request.method() !== 'GET') writes.push(request.url()); });
+  await page.goto('/');
+  await page.getByRole('link', { name: /Try the mock demo/ }).click();
+  await expect(page.getByText('Mock demo — no provider calls.', { exact: true })).toBeVisible();
+  await page.getByLabel('Sample prompt').fill('A harmless demo question');
+  await page.getByRole('button', { name: 'Review mock request' }).click();
+  await expect(page.getByLabel('Sample prompt')).toBeDisabled();
+  await expect(page.getByLabel('Mock request text')).toHaveText('A harmless demo question');
+  await page.getByRole('button', { name: 'Approve mock response' }).click();
+  await expect(page.getByText('Simulated response', { exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '3. Inspect the example response' })).toBeFocused();
+  expect(state.preparations).toHaveLength(0);
+  expect(state.executions).toBe(0);
+  expect(writes).toEqual([]);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+  await page.screenshot({ path: testInfo.outputPath('mock-demo.png'), fullPage: true });
+  await page.getByRole('button', { name: 'Reset demo' }).click();
+  await expect(page.getByLabel('Sample prompt')).toBeEnabled();
+  await expect(page.getByText('Simulated response', { exact: true })).toHaveCount(0);
+});
+
+test('reviews the complete text and exports only deliberately selected content', async ({ page }, testInfo) => {
+  const state = await mockProviders(page);
+  await page.goto('/');
+  await connect(page);
+  const prompt = 'x'.repeat(2500) + ' REVIEW-END';
+  await page.locator('#run-text').fill(prompt);
+  await page.getByRole('button', { name: 'Review request', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.getByLabel('Complete text input')).toContainText('REVIEW-END');
+  await expect(dialog).toContainText('https://api.openai.com/v1');
+  await page.screenshot({ path: testInfo.outputPath('request-review.png'), fullPage: true });
+  await dialog.getByRole('checkbox').check();
+  await dialog.getByRole('button', { name: 'Approve & run' }).click();
+  await page.getByText('Use this request in your project', { exact: true }).click();
+  const artifacts = page.locator('.run-artifacts');
+  await expect(artifacts.locator('pre')).not.toContainText('REVIEW-END');
+  const downloadPromise = page.waitForEvent('download');
+  await artifacts.getByRole('button', { name: 'Download run record' }).click();
+  const download = await downloadPromise;
+  const stream = await download.createReadStream();
+  const chunks: Buffer[] = [];
+  for await (const chunk of stream!) chunks.push(Buffer.from(chunk));
+  const record = JSON.parse(Buffer.concat(chunks).toString());
+  expect(record.contentIncluded).toBe(false);
+  expect(record.request.text).toBeUndefined();
+  expect(record.result.text).toBeUndefined();
+  expect(JSON.stringify(record)).not.toContain('sk-browser');
+  await artifacts.getByRole('checkbox').check();
+  await expect(artifacts.locator('pre')).toContainText('REVIEW-END');
+  expect(state.executions).toBe(1);
+  await page.locator('#run-text').fill('new request');
+  await expect(page.locator('.run-artifacts')).toHaveCount(0);
 });
 
 test('connection dialog supports Escape and restores keyboard focus', async ({ page }) => {

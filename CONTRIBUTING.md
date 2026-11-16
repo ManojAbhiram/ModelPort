@@ -2,7 +2,7 @@
 
 ModelPort prioritizes truthful capability information, explicit human control, and narrow network/credential boundaries. A new provider name is not useful without a tested adapter and an honest account of what it cannot do.
 
-Read [the product plan](docs/PRODUCT.md), [provider matrix](docs/PROVIDERS.md), [security policy](SECURITY.md), and [Code of Conduct](CODE_OF_CONDUCT.md) before changing behavior. The initial release is still being integrated; check the current contracts and tests rather than assuming a documentation example is a published API guarantee.
+Read [the README](README.md), [provider matrix](docs/PROVIDERS.md), [security policy](SECURITY.md), and [Code of Conduct](CODE_OF_CONDUCT.md) before changing behavior. The initial release is still being integrated; check the current contracts and tests rather than assuming a documentation example is a published API guarantee.
 
 ## Development
 
@@ -92,6 +92,8 @@ The CI definition runs on GitHub-hosted Ubuntu with Node 22 and 24, read-only re
 The checkout and Node setup actions are pinned to commit IDs verified from their official repositories. Dependabot checks npm and GitHub Actions weekly. Review dependency PRs, including transitive licenses and action permissions; do not automatically merge a security-sensitive change simply because checks pass.
 
 ## Maintainer Launch Checklist
+
+Confirm ownership and attribution, retain required dependency notices, and inspect the source distribution and SDK package before release. `npm run licenses:report` generates a declared-license inventory; it does not clear third-party obligations. `npm run package:preview` builds and inspects the SDK package without publishing.
 
 - [ ] Inspect the complete repository and initial history for secrets and copied third-party material.
 - [ ] Reconcile this documentation with the final core API, registry and tests.

@@ -10,3 +10,13 @@ test-results/
 .DS_Store
 Thumbs.db
 .kilo/
+
+# Keep internal plans, research, and launch notes local.
+# Public documentation is explicitly allowed below.
+/docs/*
+!/docs/GETTING-STARTED.md
+!/docs/PROVIDERS.md
+!/docs/DEPENDENCY-LICENSES.md
+!/docs/images/
+.gstack/
+.superpowers/

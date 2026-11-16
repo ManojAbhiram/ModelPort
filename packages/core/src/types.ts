@@ -82,12 +82,15 @@ export interface Approval {
   connectionId: string;
   providerId: string;
   providerName: string;
+  /** Connection base URL; adapters append operation-specific paths. */
+  destination: string;
   modelId: string;
   operation: Operation;
   capabilitySource: CapabilitySource;
   verificationState: Verification['state'];
   createdAt: string;
   expiresAt: string;
+  /** Complete validated text, never truncated. Empty for transcription. */
   inputPreview: string;
   inputCharacters: number;
   mediaBytes: number;

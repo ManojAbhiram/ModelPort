@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "A local-first, approval-gated workbench and SDK for multimodal AI integrations.",
+  "description": "A local workbench to inspect, test, and approve AI API requests.",
   "license": "MIT",
   "engines": { "node": ">=22.12.0" },
   "workspaces": ["packages/*", "apps/*"],
@@ -16,7 +16,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "check": "npm run typecheck && npm test && npm run build"
+    "check": "npm run typecheck && npm test && npm run build",
+    "licenses:report": "node scripts/license-report.mjs",
+    "package:preview": "npm pack --workspace @modelport/core --dry-run"
   },
   "devDependencies": {
     "@playwright/test": "1.65.1",

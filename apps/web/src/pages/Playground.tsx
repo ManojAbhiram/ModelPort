@@ -9,6 +9,7 @@ import { readUpload } from '../media';
 import type { Upload } from '../media';
 import { ApprovalDialog } from '../components/ApprovalDialog';
 import { ResultPanel } from '../components/ResultPanel';
+import { RunArtifacts } from '../components/RunArtifacts';
 import { EmptyState, Notice, SourceBadge, Spinner, VerificationBadge } from '../components/Shared';
 
 interface Props {
@@ -48,6 +49,7 @@ export function Playground({ connections, providers, csrfToken, initialConnectio
   const [reviewError, setReviewError] = useState<string | null>(null);
   const [cancelRequested, setCancelRequested] = useState(false);
   const [result, setResult] = useState<RunResult | null>(null);
+  const [completedApproval, setCompletedApproval] = useState<Approval | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
@@ -81,6 +83,7 @@ export function Playground({ connections, providers, csrfToken, initialConnectio
   function invalidate() {
     revision.current += 1;
     setResult(null);
+    setCompletedApproval(null);
     setError(null);
     setStatus('');
     setReviewError(null);
@@ -207,7 +210,7 @@ export function Playground({ connections, providers, csrfToken, initialConnectio
     const version = revision.current;
     try {
       const response = await request<{ result: RunResult }>(`/api/approvals/${encodeURIComponent(pending.id)}/execute`, csrfToken, { method: 'POST', body: { consent: true } });
-      if (mounted.current && version === revision.current) { setResult(response.result); setStatus('The approved request returned. No retry or fallback was made.'); }
+      if (mounted.current && version === revision.current) { setResult(response.result); setCompletedApproval(pending); setStatus('The approved request returned. No retry or fallback was made.'); }
     } catch (failure) {
       void discardApproval(csrfToken, pending.id).catch(() => {});
       if (mounted.current) setError(`${errorMessage(failure)} No retry was made. The provider may have received this request; check provider activity before approving another attempt.`);
@@ -241,7 +244,7 @@ export function Playground({ connections, providers, csrfToken, initialConnectio
             <p className="request-status" role="status">{status}</p>
           </form>
         </section>
-        <div className="playground-output-column"><ResultPanel result={result} preparing={phase === 'preparing'} />{connection && <aside className="request-boundary"><LockKeyhole size={19} aria-hidden="true" /><div><h3>Know the boundary.</h3><VerificationBadge state={connection.verification.state} /><p>Metadata is not a successful inference test. Exact cost is unknown until your provider accounts for usage. No automatic retries, no fallback models.</p></div></aside>}</div>
+        <div className="playground-output-column"><ResultPanel result={result} preparing={phase === 'preparing'} />{result && completedApproval && <RunArtifacts key={result.id} approval={completedApproval} result={result} />}{connection && <aside className="request-boundary"><LockKeyhole size={19} aria-hidden="true" /><div><h3>Know the boundary.</h3><VerificationBadge state={connection.verification.state} /><p>Metadata is not a successful inference test. Exact cost is unknown until your provider accounts for usage. No automatic retries, no fallback models.</p></div></aside>}</div>
       </div>}
     {approval && <ApprovalDialog approval={approval} payloadBytes={payloadBytes} phase={phase} error={reviewError} cancelRequested={cancelRequested} onCancel={() => void cancelReview()} onExecute={() => void execute()} returnFocusRef={reviewButtonRef} />}
   </div>;

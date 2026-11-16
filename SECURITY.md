@@ -91,4 +91,4 @@ Passing offline tests is not proof of live provider behavior or resistance to ev
 
 Dependencies and Actions require ongoing review. CI uses read-only repository permissions and pinned official action commits; no provider secrets or publishing permissions are needed. Do not use `pull_request_target` to run untrusted contributor code. Browser reports/traces can contain sensitive input and must not be published without review.
 
-Security principles and source material are recorded in [docs/RESEARCH.md](docs/RESEARCH.md). The policy is independently authored; links to OWASP and upstream projects are references, not claims that those projects audited ModelPort.
+This policy describes ModelPort's security boundaries and is independently authored. The [provider matrix](docs/PROVIDERS.md) records provider documentation sources. References to upstream projects are not claims that those projects audited ModelPort.

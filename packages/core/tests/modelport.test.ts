@@ -34,6 +34,17 @@ function deferred<T>() {
 }
 
 describe('approval-gated integration SDK', () => {
+  it('exposes the complete immutable text and destination before approval', async () => {
+    const { port, adapter, input, connection } = await connected();
+    const text = 'x'.repeat(3000) + ' REVIEW THIS END';
+    const approval = port.prepare({ ...input, text });
+    expect(approval.inputPreview).toBe(text);
+    expect(approval).toHaveProperty('destination', connection.baseUrl);
+    approval.inputPreview = 'Changed view';
+    expect(port.listApprovals()[0]?.inputPreview).toBe(text);
+    expect(adapter.run).not.toHaveBeenCalled();
+    expect((await port.execute(approval.id, { consent: true })).text).toBe(text);
+  });
   it('connects, refreshes, declares, and prepares without any inference', async () => {
     const { port, adapter, connection, input } = await connected();
     await port.refresh(connection.id);

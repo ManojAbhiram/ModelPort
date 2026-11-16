@@ -1,6 +1,6 @@
 # Provider Contracts
 
-This is the V1 implementation matrix, not a list of everything each vendor offers. Reviewed on **2026-11-14** against the official sources below. The adapters have **offline, fake-Transport contract tests**. Final validation also fetched OpenRouter's anonymous public catalog through the guarded transport; this is recorded in [the research notes](RESEARCH.md#public-catalog-smoke-check). No provider credentials or live inference were used. `ready` means that the listed protocol is implemented, not that a particular account, model, region, or inference API has been live-verified.
+This is the V1 implementation matrix, not a list of everything each vendor offers. Reviewed on **2026-11-14** against the official sources below. The adapters have **offline, fake-Transport contract tests**. A dated metadata smoke check also fetched OpenRouter's anonymous public catalog through the guarded transport on 2026-11-14; that established catalog reachability only. No provider credentials or live inference were used. `ready` means that the listed protocol is implemented, not that a particular account, model, region, or inference API has been live-verified.
 
 ModelPort uses direct HTTP contracts through an injected, guarded transport. It does not install vendor SDKs, inherit SDK retries, download provider media URLs, or guess OpenAI compatibility from a vendor name.
 

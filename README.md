@@ -1,8 +1,21 @@
 # ModelPort
 
-Inspect a provider. Choose a model. Review the request before it runs.
+A local workbench to inspect, test, and approve AI API requests.
 
-ModelPort is a local-first workbench for developers integrating AI into a product: a server-side TypeScript SDK, a React web app, and a coding-agent skill. Bring your own credentials, distinguish catalog claims from verified metadata, and explicitly approve each inference request.
+ModelPort helps developers prototype AI integrations: connect your provider, inspect model capabilities, review what will be sent, and approve one request. Bring your own credentials and inspect the result before taking the request into your project. A server-side TypeScript SDK and a coding-agent skill support that workflow.
+
+Start with the **Mock demo** in the app: no API key or provider calls, just a clearly labeled simulation. Follow [your first reviewed request](docs/GETTING-STARTED.md) for source installation and a real-provider walkthrough.
+
+![ModelPort provider library with the no-key mock demo entry point](docs/images/workbench-overview.png)
+
+## What You Can Do
+
+- Inspect provider metadata and capability evidence before sending a prompt.
+- Review the destination base URL, model, parameters, complete text input, and media details before approving a single attempt.
+- Inspect returned text/media, elapsed time, and usage where provided.
+- Copy request-specific TypeScript preparation code or download a JSON run record. Prompt and response content are omitted by default; inclusion requires a separate opt-in. Credentials, internal IDs and media bytes are excluded.
+
+Use ModelPort for deliberate integration experiments on your workstation. Production automation, hosted team administration, and durable experiment history are outside the current scope.
 
 **V1 preview:** the SDK, adapters, workbench, and skill are implemented, with offline contract and browser tests. This is not a production security certification, a published npm package announcement, or a claim that live provider calls have passed. The [provider matrix](docs/PROVIDERS.md) describes adapter coverage; the registry in `packages/core` is the runtime source of truth.
 
@@ -32,6 +45,8 @@ Open **http://127.0.0.1:8787**. Here, "production build" describes the build mod
 4. Enter text or an allowed local media file. Review the exact provider, model, operation, input, limits, and billing notice.
 5. Approve that request to execute it once. Editing the request or switching the model requires a new approval.
 6. Disconnect when finished. Disconnecting removes the managed credential; restarting the API clears its in-memory connections and approvals. Closing a tab alone is not credential deletion.
+
+After a successful response, expand **Use this request in your project** for code and export. Review the opt-in content setting and all exported metadata before sharing.
 
 Connecting, refreshing metadata, declaring a capability, changing selection, and preparing a request do not run inference. Metadata requests still contact the selected service; this is not a universal guarantee of a zero-dollar provider charge.
 
@@ -169,9 +184,9 @@ These checks validate local code and contracts, not live provider compatibility,
 | `apps/server` | Fastify API, local session/CSRF boundary and static app serving |
 | `apps/web` | React workbench |
 | `skills/modelport` | Coding-agent skill and references |
-| [docs/PRODUCT.md](docs/PRODUCT.md) | Product scope and acceptance criteria |
 | [docs/PROVIDERS.md](docs/PROVIDERS.md) | Provider coverage and evidence |
-| [docs/RESEARCH.md](docs/RESEARCH.md) | Source-linked research and licensing decisions |
+| [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md) | No-key demo and first real request |
+| [docs/DEPENDENCY-LICENSES.md](docs/DEPENDENCY-LICENSES.md) | Generated inventory of declared dependency licenses |
 
 ## Security And Contribution
 
@@ -181,22 +196,12 @@ Contributions follow [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct
 
 ## Publication
 
-This checkout does not declare an existing GitHub origin or npm release. There are intentionally no repository-dependent badges or invented release links.
+The source repository is [ManojAbhiram/ModelPort](https://github.com/ManojAbhiram/ModelPort). This preview does not announce a public npm release.
 
-Publication is an explicit maintainer action, not an app feature. First review the complete source/history for secrets and third-party material, run the checks, and create a reviewed local Git commit. Install [GitHub CLI](https://cli.github.com/) and authenticate before using the [repository creation command](https://cli.github.com/manual/gh_repo_create).
-
-The following is an example for a **new private repository**. `OWNER/modelport` is a placeholder, not this project's remote. Replace `OWNER` with the actual account or organization and confirm that no conflicting `origin` already exists before running it.
-
-```sh
-gh auth login
-gh auth status
-gh repo create OWNER/modelport --private --source=. --remote=origin --push
-```
-
-Before a public launch, the owner must establish monitored security/community reporting, configure the repository's private vulnerability reporting when available, review CI results and dependency alerts, and choose branch protections. Changing visibility, enabling repository settings and publishing an npm package are separate actions; this repository's workflows do not do them.
-
-For a reviewed open-source launch directly to a new public repository, use `--public` instead of `--private` in the creation command. No GitHub repository or npm package is created automatically by this project.
+Publication is an explicit maintainer action. Review the source/history for secrets and third-party material, run the checks, and establish monitored security/community reporting. Configure private vulnerability reporting and branch protections where available, and review actual CI results and dependency alerts. Publishing an npm package is a separate action; repository workflows do not publish or deploy automatically.
 
 ## License
 
 Original ModelPort code and documentation are [MIT licensed](LICENSE), copyright 2026 ModelPort contributors. Upstream libraries retain their own licenses. Provider services, model weights, voice rights, and generated-content terms are not licensed by this repository. Research references are not endorsements, forks, copied UI assets, or claims of affiliation.
+
+The maintainer must confirm ownership and attribution before publication. Run `npm run licenses:report` to refresh the declared dependency-license inventory and `npm run package:preview` to inspect SDK packaging without publishing. The SDK includes its own copy of the root MIT license. Review exact dependency license texts and distribution obligations; an inventory is not legal clearance.

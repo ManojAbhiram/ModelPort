@@ -189,10 +189,10 @@ export class ModelPort {
     const now = this.#now();
     const view: Approval = {
       id: randomUUID(), connectionId: connection.view.id, providerId: provider.id,
-      providerName: provider.name, modelId: model.id, operation: input.operation,
+      providerName: provider.name, destination: connection.view.baseUrl, modelId: model.id, operation: input.operation,
       capabilitySource: model.capabilitySource, verificationState: connection.view.verification.state,
       createdAt: new Date(now).toISOString(), expiresAt: new Date(now + this.#ttl).toISOString(),
-      inputPreview: input.text?.slice(0, 2000) || 'Audio file for transcription',
+      inputPreview: input.text ?? '',
       inputCharacters: input.text?.length || 0, mediaBytes: input.media ? Buffer.from(input.media.data, 'base64').length : 0,
       mediaType: input.media?.mimeType, maxOutputTokens: input.maxOutputTokens, voice: input.voice,
       billingNotice: provider.kind === 'local'

@@ -15,7 +15,7 @@ This skill does not authorize edits, installation, network access, credential di
 
 ## Inspect First
 
-1. Read the target product's README, package scripts, relevant configuration and integration code. In the ModelPort source repository, also read `docs/PRODUCT.md`, `docs/PROVIDERS.md` and `packages/core/src/types.ts`.
+1. Read the target product's README, package scripts, relevant configuration and integration code. In the ModelPort source repository, also read `docs/PROVIDERS.md` and `packages/core/src/types.ts`.
 2. Identify the task, required input/output modality, latency/retention requirements, local versus cloud processing and any cost constraints. Ask only about decisions that block a correct implementation.
 3. Inspect the installed SDK version and current registry rather than assuming this skill reflects a newer release. In a consumer repository, locate its actual ModelPort dependency and server entry point; do not search personal directories for credentials.
 4. Explain a missing or planned capability explicitly. Do not install another provider, broaden network access or silently switch models to make the request work.

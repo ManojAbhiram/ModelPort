@@ -9,10 +9,12 @@ import { ProviderLibrary } from './pages/ProviderLibrary';
 import { Connections } from './pages/Connections';
 import { Playground } from './pages/Playground';
 import { IntegrationGuide } from './pages/IntegrationGuide';
+import { Demo } from './pages/Demo';
 
-type Page = 'providers' | 'connections' | 'playground' | 'guide';
+type Page = 'providers' | 'connections' | 'playground' | 'guide' | 'demo';
 const PAGES = [
   { id: 'providers', label: 'Provider library', icon: LayoutGrid },
+  { id: 'demo', label: 'Mock demo', icon: FlaskConical },
   { id: 'connections', label: 'Connections', icon: Cable },
   { id: 'playground', label: 'Playground', icon: FlaskConical },
   { id: 'guide', label: 'Integration guide', icon: BookOpen },
@@ -107,7 +109,7 @@ export function App() {
     <aside className="sidebar">
       <a href="#providers" className="brand" onClick={(event) => { event.preventDefault(); navigate('providers'); }} aria-label="ModelPort provider library">
         <img src="/favicon.svg" width="38" height="38" alt="" />
-        <span>ModelPort<span className="brand-caption">The integration workbench</span></span>
+        <span>ModelPort<span className="brand-caption">The AI request workbench</span></span>
       </a>
       <div className="sidebar-section-label">Workspace</div>
       <nav aria-label="Main navigation" className="main-nav">
@@ -147,9 +149,10 @@ export function App() {
             {page === 'connections' && <Connections providers={providers} connections={connections} csrfToken={session.csrfToken} onUpdate={updateConnection} onRemove={(id) => setConnections((current) => current.filter((item) => item.id !== id))} onAdd={() => navigate('providers')} onPlay={(id) => navigate('playground', id)} />}
             {page === 'playground' && <Playground providers={providers} connections={connections} csrfToken={session.csrfToken} initialConnectionId={selectedConnectionId} onAdd={() => navigate('providers')} onManage={(id) => navigate('connections', id)} />}
             {page === 'guide' && <IntegrationGuide />}
+            {page === 'demo' && <Demo />}
           </>}
       </main>
-      <footer className="workspace-footer"><span>ModelPort</span><span>Connect deliberately. Build with confidence.</span></footer>
+      <footer className="workspace-footer"><span>ModelPort</span><a href="/THIRD_PARTY_NOTICES.txt" target="_blank" rel="noreferrer">Third-party notices</a><span>Inspect. Test. Approve.</span></footer>
     </div>
     {connecting && session && <ConnectionDialog provider={connecting} csrfToken={session.csrfToken} onClose={() => setConnecting(null)} onSave={(connection) => {
       updateConnection(connection);
