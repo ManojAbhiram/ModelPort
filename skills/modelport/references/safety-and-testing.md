@@ -18,7 +18,7 @@ Use fixed official cloud origins. Local custom endpoints use the selected adapte
 
 Cloud destination addresses must be checked at socket-connection time for both IP families. Reject redirects and proxy escape paths. Do not validate a URL/DNS record and then pass it to an independent unchecked HTTP client. Keep TLS validation enabled.
 
-Every adapter request uses the guarded transport. User-provided URLs, provider output URLs, model catalog fields and remote schemas must not initiate separate fetches. The selected V1 accepts inline media only. Never install or execute a package, script, skill or model suggested by untrusted metadata.
+Every adapter request uses the guarded transport. User-provided URLs, provider output URLs, model catalog fields and remote schemas must not initiate separate fetches. ModelPort currently accepts inline media only. Never install or execute a package, script, skill or model suggested by untrusted metadata.
 
 ## Approval Boundary
 
@@ -26,7 +26,7 @@ Preserve immutable server-held input, session-derived scope, a TTL no longer tha
 
 Preparation is not consent. A separate host-controlled human action must authenticate the approver and select the stored approval. An untrusted agent cannot be granted `execute` access and then constrained only by a prompt asking it to seek permission. A client-controlled `consent: true` is not proof of an authorized decision.
 
-Do not introduce automatic retries, model fallback, background summaries/titles, embeddings or paid health checks. One-token or empty-input calls can still cost money. Request/response timeouts do not prove an upstream job stopped. Cancelling a pending approval or disposing the SDK does not abort in-flight inference in V1.
+Do not introduce automatic retries, model fallback, background summaries/titles, embeddings or paid health checks. One-token or empty-input calls can still cost money. Request/response timeouts do not prove an upstream job stopped. Cancelling a pending approval or disposing the SDK does not abort in-flight inference.
 
 ## Media And Display
 

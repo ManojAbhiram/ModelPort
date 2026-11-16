@@ -22,7 +22,7 @@ This skill does not authorize edits, installation, network access, credential di
 
 ## Choose A Contract
 
-Use one of `text`, `vision`, `image`, `stt`, `tts` or `embedding` only when both the adapter and model allow it. V1 supports bounded inline images and audio files, not realtime microphone sessions, streaming output, tools, remote URLs or asynchronous specialist jobs.
+Use one of `text`, `vision`, `image`, `stt`, `tts` or `embedding` only when both the adapter and model allow it. ModelPort currently supports bounded inline images and audio files, not realtime microphone sessions, streaming output, tools, remote URLs or asynchronous specialist jobs.
 
 Read [provider evidence](references/providers.md) when choosing or extending a provider. The source repository's provider matrix and registry take precedence over a general statement in a vendor's marketing page. "OpenAI-compatible" is not evidence for every endpoint or operation.
 

@@ -2,7 +2,7 @@
 
 ModelPort is an early, single-user, local-first application. Its controls reduce specific risks; they are not an independent audit, protection against a compromised machine, or permission to expose the service publicly.
 
-This policy describes the V1 security contract. Core, app and provider integration are still in progress. Maintainers must reconcile these statements with code and test results before a release. No live-provider security certification or universal zero-cost guarantee is made.
+This policy describes ModelPort's current security contract. Core, app and provider integration are still in progress. Maintainers must reconcile these statements with code and test results before a release. No live-provider security certification or universal zero-cost guarantee is made.
 
 ## Reporting
 
@@ -22,7 +22,7 @@ The supported environment is a trusted user running the app on their own machine
 
 Trusted components include the host operating system, the selected local model server, the Node process and its dependencies, and the user who approves requests. A local process with the user's privileges, a malicious browser extension, a debugger or a system administrator can bypass assumptions or read process memory. Loopback binding does not isolate different users or processes on the same machine.
 
-The following are outside V1's deployment promise:
+The following deployments are not currently supported:
 
 - Public internet, LAN, reverse-proxy or tunnel exposure.
 - Hosted multi-user authentication, authorization and tenant isolation.
@@ -51,7 +51,7 @@ The SDK's `execute(id, { consent: true, scope })` is a programming interface, no
 
 Untrusted agent code must never receive direct execution authority, credentials, a callable approving handler, or unrestricted access to the trusted SDK instance. Instructions in a skill or prompt to "ask the user" do not enforce this boundary.
 
-There are no automatic inference retries, fallback models or background generation in V1. Bounded output settings and a one-request concurrency limit reduce exposure; they do not establish a maximum dollar cost, particularly for images, audio or provider-side processing.
+There are no automatic inference retries, fallback models or background generation. Bounded output settings and a one-request concurrency limit reduce exposure; they do not establish a maximum dollar cost, particularly for images, audio or provider-side processing.
 
 Cancelling a pending approval prevents later use of that approval. After a request is dispatched, timeout, disconnection, local cancellation or loss of the response does not prove provider execution stopped. Mark the result uncertain and potentially billed; never silently submit again.
 
@@ -65,11 +65,11 @@ The guarded Node transport must enforce approved origins and public destination 
 
 All adapter traffic must use the guarded transport. Do not bypass it through a third-party SDK, raw fetch, automatic media download, catalog URL, provider-returned URL or remote schema reference. A known API response is not authority to fetch a different origin or forward a key there.
 
-The V1 application does not fetch remote input or generated-media URLs. Only supported inline media responses are accepted. Reference/catalog metadata must never select executable code, npm packages or secret destinations.
+The application does not fetch remote input or generated-media URLs. Only supported inline media responses are accepted. Reference/catalog metadata must never select executable code, npm packages or secret destinations.
 
 ## Uploads And Responses
 
-V1 media is inline and capped at 4 MiB decoded input. Allowed image MIME types are PNG, JPEG and WebP; audio types are MPEG/MP3, WAV, Ogg, WebM and FLAC. Provider-specific subsets may be narrower. Text input is capped at 16,000 characters, and upstream responses at 16 MiB.
+Media is inline and capped at 4 MiB decoded input. Allowed image MIME types are PNG, JPEG and WebP; audio types are MPEG/MP3, WAV, Ogg, WebM and FLAC. Provider-specific subsets may be narrower. Text input is capped at 16,000 characters, and upstream responses at 16 MiB.
 
 Check type allowlists, byte limits, signatures and image dimension headers. Images are limited to 8192 pixels per side and 16,777,216 total pixels; animated PNG/WebP is rejected. Do not trust a filename, MIME header, claimed Content-Length or base64 prefix. Reject unsupported formats, malformed input and excessive dimensions before inference is approved. These checks do not establish that an audio file is fully decodable or that any accepted file is free of malicious content.
 

@@ -8,7 +8,7 @@ Map the product task to an exact operation: text, image understanding (`vision`)
 
 Provider status `ready` means an adapter exists; it is not proof of account entitlement or all-model/all-operation support. `planned` means non-executable in this version. A compatible chat endpoint does not establish compatible image, embedding or audio APIs.
 
-The current V1 excludes enterprise IAM/OAuth integrations, realtime audio, streaming, tools, remote media URLs and asynchronous specialist jobs. Providers such as AWS Bedrock, Azure, Vertex, Replicate, fal, AssemblyAI and Cartesia remain planned where the registry says so. Do not misrepresent a missing adapter as a vendor limitation.
+ModelPort currently excludes enterprise IAM/OAuth integrations, realtime audio, streaming, tools, remote media URLs and asynchronous specialist jobs. Providers such as AWS Bedrock, Azure, Vertex, Replicate, fal, AssemblyAI and Cartesia remain planned where the registry says so. Do not misrepresent a missing adapter as a vendor limitation.
 
 ## Evidence Levels
 
