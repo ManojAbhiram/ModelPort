@@ -1,9 +1,18 @@
 {
-  "name": "@modelport/core",
+  "name": "@manojabhiram/modelport-core",
   "version": "0.1.0",
   "description": "Provider adapters, model discovery and one-use human approvals for multimodal AI.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManojAbhiram/ModelPort.git",
+    "directory": "packages/core"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "engines": { "node": ">=22.12.0" },
   "files": ["dist", "src", "LICENSE", "README.md"],
   "exports": {

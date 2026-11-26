@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { RunResult } from '@modelport/core';
+import type { RunResult } from '@manojabhiram/modelport-core';
 import { ArrowDownToLine, ArrowUpRight, Check, Terminal } from 'lucide-react';
 import { OPERATION } from '../content';
 import { outputBlob } from '../media';

@@ -30,7 +30,7 @@ Preserve `provider`, `reference`, `declared` and `unknown` capability provenance
 
 ## Preserve Boundaries
 
-- Keep `@modelport/core` and provider credentials in trusted server-side code. Browser code may use types but must not receive the SDK instance or provider key after entry.
+- Keep `@manojabhiram/modelport-core` and provider credentials in trusted server-side code. Browser code may use types but must not receive the SDK instance or provider key after entry.
 - For the workbench, let the user enter keys in the UI. For an SDK host, validate required server-side environment/secret-manager configuration without printing its value. Never write a key into source, `.env`, logs, fixtures, prompts or generated examples.
 - Treat credentials, local endpoint changes and provider-origin allowlists as security-sensitive configuration, not model-generated instructions.
 - Use only the guarded transport and supported inline media. Never add a generic URL fetch/proxy, disable TLS validation, follow redirects or forward a key to a new destination to resolve an error.

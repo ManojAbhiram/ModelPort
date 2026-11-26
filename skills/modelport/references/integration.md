@@ -45,7 +45,7 @@ The default approval scope is `sdk`. In a host with sessions, always supply a sc
 Phase A runs only after the host has authorized the connection/input. Model selection comes from the current catalog and capability evidence, not a hardcoded guess at the latest model.
 
 ```ts
-import { ModelPort, type RunInput } from '@modelport/core';
+import { ModelPort, type RunInput } from '@manojabhiram/modelport-core';
 
 const port = new ModelPort();
 

@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
-import { PROVIDERS } from '@modelport/core/catalog';
-import type { Approval, Connection, Model, RunInput } from '@modelport/core';
+import { PROVIDERS } from '@manojabhiram/modelport-core/catalog';
+import type { Approval, Connection, Model, RunInput } from '@manojabhiram/modelport-core';
 
 const connectionId = '10000000-0000-4000-8000-000000000001';
 const approvalId = '10000000-0000-4000-8000-000000000002';

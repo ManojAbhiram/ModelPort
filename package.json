@@ -8,17 +8,17 @@
   "engines": { "node": ">=22.12.0" },
   "workspaces": ["packages/*", "apps/*"],
   "scripts": {
-    "dev": "npm run build --workspace @modelport/core && concurrently --kill-others -n core,api,web \"npm run dev --workspace @modelport/core\" \"npm run dev --workspace @modelport/server\" \"npm run dev --workspace @modelport/web\"",
-    "build": "npm run build --workspace @modelport/core && npm run build --workspace @modelport/web && npm run build --workspace @modelport/server",
+    "dev": "npm run build --workspace @manojabhiram/modelport-core && concurrently --kill-others -n core,api,web \"npm run dev --workspace @manojabhiram/modelport-core\" \"npm run dev --workspace @modelport/server\" \"npm run dev --workspace @modelport/web\"",
+    "build": "npm run build --workspace @manojabhiram/modelport-core && npm run build --workspace @modelport/web && npm run build --workspace @modelport/server",
     "start": "npm run start --workspace @modelport/server",
-    "typecheck": "npm run build --workspace @modelport/core && npm run typecheck --workspaces --if-present && tsc -p tsconfig.tests.json",
-    "pretest": "npm run build --workspace @modelport/core",
+    "typecheck": "npm run build --workspace @manojabhiram/modelport-core && npm run typecheck --workspaces --if-present && tsc -p tsconfig.tests.json",
+    "pretest": "npm run build --workspace @manojabhiram/modelport-core",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "check": "npm run typecheck && npm test && npm run build",
     "licenses:report": "node scripts/license-report.mjs",
-    "package:preview": "npm pack --workspace @modelport/core --dry-run"
+    "package:preview": "npm pack --workspace @manojabhiram/modelport-core --dry-run"
   },
   "devDependencies": {
     "@playwright/test": "1.65.1",

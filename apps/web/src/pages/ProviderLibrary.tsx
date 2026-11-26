@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Connection, Operation, ProviderDefinition } from '@modelport/core';
+import type { Connection, Operation, ProviderDefinition } from '@manojabhiram/modelport-core';
 import { ArrowRight, ArrowUpRight, Check, Search, SlidersHorizontal, Unplug } from 'lucide-react';
 import { OPERATIONS, OPERATION } from '../content';
 import { EmptyState, OperationTags, ProviderMark } from '../components/Shared';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Approval, RunResult } from '@modelport/core';
+import type { Approval, RunResult } from '@manojabhiram/modelport-core';
 import { exportRecord, requestExample } from '../artifacts';
 import { CopyButton } from './Shared';
 

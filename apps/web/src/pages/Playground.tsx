@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
-import type { Approval, Connection, Operation, ProviderDefinition, RunInput, RunResult } from '@modelport/core';
-import { inputMediaTypes, isBlockedModel } from '@modelport/core/policy';
+import type { Approval, Connection, Operation, ProviderDefinition, RunInput, RunResult } from '@manojabhiram/modelport-core';
+import { inputMediaTypes, isBlockedModel } from '@manojabhiram/modelport-core/policy';
 import { ArrowRight, FileAudio, FileImage, FlaskConical, LockKeyhole, Upload as UploadIcon, X } from 'lucide-react';
 import { discardApproval, errorMessage, request } from '../api';
 import { CAPABILITY, formatBytes, OPERATION, OPERATIONS } from '../content';

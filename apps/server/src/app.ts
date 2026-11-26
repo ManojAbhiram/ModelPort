@@ -6,8 +6,8 @@ import helmet from '@fastify/helmet';
 import rateLimit from '@fastify/rate-limit';
 import staticFiles from '@fastify/static';
 import { z } from 'zod';
-import { ModelPort, ModelPortError, OPERATIONS, PROVIDERS } from '@modelport/core';
-import type { ConnectionConfig, RunInput } from '@modelport/core';
+import { ModelPort, ModelPortError, OPERATIONS, PROVIDERS } from '@manojabhiram/modelport-core';
+import type { ConnectionConfig, RunInput } from '@manojabhiram/modelport-core';
 
 interface Session { id: string; csrf: string; expiresAt: number }
 interface AppOptions {

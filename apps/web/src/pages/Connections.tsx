@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import type { Connection, Model, ProviderDefinition } from '@modelport/core';
+import type { Connection, Model, ProviderDefinition } from '@manojabhiram/modelport-core';
 import { ArrowRight, Cable, Plus, RefreshCw, Search, Unplug } from 'lucide-react';
 import { errorMessage, request } from '../api';
 import { CAPABILITY, formatDate } from '../content';

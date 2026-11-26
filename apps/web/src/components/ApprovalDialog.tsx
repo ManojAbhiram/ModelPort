@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { RefObject } from 'react';
-import type { Approval } from '@modelport/core';
+import type { Approval } from '@manojabhiram/modelport-core';
 import { Check, LockKeyhole } from 'lucide-react';
 import { CAPABILITY, formatDate, OPERATION } from '../content';
 import { Dialog } from './Dialog';

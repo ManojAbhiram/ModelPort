@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import type { Connection, ConnectionConfig, ProviderDefinition } from '@modelport/core';
+import type { Connection, ConnectionConfig, ProviderDefinition } from '@manojabhiram/modelport-core';
 import { ArrowUpRight, KeyRound, ShieldCheck } from 'lucide-react';
 import { errorMessage, request } from '../api';
 import { Dialog } from './Dialog';
