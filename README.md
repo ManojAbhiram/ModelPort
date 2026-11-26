@@ -93,7 +93,13 @@ There are no automatic inference retries, fallback models, background titles, or
 
 ## Use The SDK
 
-`@modelport/core` is the server-side workspace package in this source tree. The workspace install resolves it locally; do not assume a package with that name on a public registry is this project. Publishing the SDK is a separate owner-controlled step.
+The server-side SDK is available on npm as [`@manojabhiram/modelport-core`](https://www.npmjs.com/package/@manojabhiram/modelport-core). In a separate Node.js project, install it with:
+
+```sh
+npm install @manojabhiram/modelport-core
+```
+
+When working in this repository, `npm ci` links the SDK from the local workspace.
 
 Keep a `ModelPort` instance in a trusted server process. Importing it into a browser, edge environment without the guarded Node transport, or untrusted agent runtime is not a supported security boundary.
 
@@ -102,7 +108,7 @@ Keep a `ModelPort` instance in a trusted server process. Importing it into a bro
 This example defines server functions; it does not automatically connect or execute a model. `apiKey` must come from trusted server-side input, not a literal in source code. The host must authorize access to connections and derive `sessionScope` from its authenticated session rather than accepting a client-supplied scope.
 
 ```ts
-import { ModelPort, type RunInput } from '@modelport/core';
+import { ModelPort, type RunInput } from '@manojabhiram/modelport-core';
 
 const port = new ModelPort();
 
@@ -196,9 +202,15 @@ Contributions follow [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct
 
 ## Publication
 
-The source repository is [ManojAbhiram/ModelPort](https://github.com/ManojAbhiram/ModelPort). This preview does not announce a public npm release.
+The source repository is [ManojAbhiram/ModelPort](https://github.com/ManojAbhiram/ModelPort). The SDK's first public npm release is `0.1.0`.
 
-Publication is an explicit maintainer action. Review the source/history for secrets and third-party material, run the checks, and establish monitored security/community reporting. Configure private vulnerability reporting and branch protections where available, and review actual CI results and dependency alerts. Publishing an npm package is a separate action; repository workflows do not publish or deploy automatically.
+Only the `@manojabhiram/modelport-core` SDK is packaged for npm. The maintainer publishes it manually.
+
+1. Review the source and Git history for secrets and third-party material. Review CI results, dependency alerts, and the repository's security reporting settings.
+2. From the repository root, run `npm ci`, `npm run check`, and `npm run test:e2e`. Run `npm run package:preview` to inspect the files, then `npm pack --workspace @manojabhiram/modelport-core` to create `manojabhiram-modelport-core-0.1.0.tgz` in the current directory. Use the filename printed by npm if the version changes.
+3. Install the tarball in a separate Node.js project and confirm that `@manojabhiram/modelport-core`, `@manojabhiram/modelport-core/catalog`, and `@manojabhiram/modelport-core/policy` import successfully.
+4. Enable two-factor authentication on your npm account and confirm that it has publish access to the `@manojabhiram` scope. Run `npm login --registry https://registry.npmjs.org/`. Check `npm view @manojabhiram/modelport-core --registry https://registry.npmjs.org/` for an existing package before the first release. A 404 does not confirm that you control the scope.
+5. Publish the inspected tarball with `npm publish ./manojabhiram-modelport-core-0.1.0.tgz --access public --registry https://registry.npmjs.org/`. Complete npm's authentication prompt, then verify with `npm view @manojabhiram/modelport-core@0.1.0 version --registry https://registry.npmjs.org/`.
 
 ## License
 

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import type { Connection, Model, Operation, ProviderDefinition } from '@modelport/core';
+import type { Connection, Model, Operation, ProviderDefinition } from '@manojabhiram/modelport-core';
 import { errorMessage, request } from '../api';
 import { OPERATION } from '../content';
 import { Dialog } from './Dialog';

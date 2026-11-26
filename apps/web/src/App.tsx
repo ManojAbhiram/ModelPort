@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { Connection, ProviderDefinition } from '@modelport/core';
+import type { Connection, ProviderDefinition } from '@manojabhiram/modelport-core';
 import { ArrowUpRight, BookOpen, Cable, Check, ChevronRight, FlaskConical, LayoutGrid, ShieldCheck, X } from 'lucide-react';
 import { errorMessage, request } from './api';
 import type { Session } from './api';

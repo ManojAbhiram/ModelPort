@@ -1,4 +1,4 @@
-import type { CapabilitySource, Operation, Verification } from '@modelport/core';
+import type { CapabilitySource, Operation, Verification } from '@manojabhiram/modelport-core';
 import { AudioLines, Image, ScanEye, Speech, TextCursorInput, Braces } from 'lucide-react';
 
 export const OPERATIONS: Operation[] = ['text', 'vision', 'image', 'stt', 'tts', 'embedding'];

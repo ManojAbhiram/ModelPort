@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { request as httpRequest } from 'node:http';
 import type { AddressInfo } from 'node:net';
-import { ModelPort } from '@modelport/core';
-import type { CatalogResult, ProviderAdapter } from '@modelport/core';
+import { ModelPort } from '@manojabhiram/modelport-core';
+import type { CatalogResult, ProviderAdapter } from '@manojabhiram/modelport-core';
 import { buildApp } from '../src/app.js';
 
 const apps: Awaited<ReturnType<typeof buildApp>>[] = [];

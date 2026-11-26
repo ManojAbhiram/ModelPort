@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
-import type { CapabilitySource, Operation, Verification } from '@modelport/core';
+import type { CapabilitySource, Operation, Verification } from '@manojabhiram/modelport-core';
 import { AlertCircle, Check, Copy, Info, LoaderCircle } from 'lucide-react';
 import { CAPABILITY, OPERATION, VERIFICATION } from '../content';
 

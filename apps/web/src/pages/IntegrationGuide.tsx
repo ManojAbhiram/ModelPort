@@ -1,7 +1,7 @@
 import { ArrowRight, BookOpen, Code2, FolderDown, ShieldCheck } from 'lucide-react';
 import { CopyButton, Notice } from '../components/Shared';
 
-const SDK_EXAMPLE = `import { ModelPort } from '@modelport/core';
+const SDK_EXAMPLE = `import { ModelPort } from '@manojabhiram/modelport-core';
 
 // Server-side only. Never expose this key to a browser.
 const port = new ModelPort();
@@ -48,7 +48,7 @@ export function IntegrationGuide() {
     <div className="guide-intro-strip"><Code2 size={23} strokeWidth={1.5} aria-hidden="true" /><p>Start in the workbench. After a response, expand <strong>Use this request in your project</strong> for request-specific TypeScript and a JSON record. Content is excluded by default; review metadata before sharing.</p></div>
 
     <section className="guide-section" aria-labelledby="sdk-heading">
-      <div className="guide-section-heading"><span className="guide-number">01</span><div><h2 id="sdk-heading">Bring the SDK to your server.</h2><p>The example uses the <code>@modelport/core</code> workspace package. It does not assume a public npm release.</p></div></div>
+      <div className="guide-section-heading"><span className="guide-number">01</span><div><h2 id="sdk-heading">Bring the SDK to your server.</h2><p>Install <code>@manojabhiram/modelport-core</code> from npm in your Node.js project.</p></div></div>
       <Notice title="Server-side, not client-side."><p>Keep the SDK instance and credentials on your backend. Import only TypeScript types into browser code. Do not embed keys in bundles, generated examples, or client storage.</p></Notice>
       <div className="code-block"><div className="code-block-header"><span><Code2 size={16} aria-hidden="true" />server/inference.ts</span><CopyButton text={SDK_EXAMPLE} /></div><pre tabIndex={0} aria-label="Approval-gated SDK example"><code>{SDK_EXAMPLE}</code></pre></div>
       <div className="host-responsibility"><ShieldCheck size={21} aria-hidden="true" /><div><h3>The approval UI is your host app's responsibility.</h3><p><code>showToUser</code> is your own interface, not an SDK helper. Show the exact provider, model, operation, data preview, provenance, verification state, limits, and possible charges. Execute only after the person explicitly agrees. Never turn consent into an automatic default.</p></div></div>

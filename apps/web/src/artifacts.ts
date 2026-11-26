@@ -1,4 +1,4 @@
-import type { Approval, RunResult } from '@modelport/core';
+import type { Approval, RunResult } from '@manojabhiram/modelport-core';
 
 // Deliberate allowlists: never serialize a connection, approval or result wholesale.
 export function exportRecord(approval: Approval, result: RunResult, includeContent = false) {
@@ -30,7 +30,7 @@ export function requestExample(approval: Approval, includeContent = false): stri
     ...(approval.voice !== undefined ? { voice: approval.voice } : {}),
   };
   const hasMedia = approval.operation === 'vision' || approval.operation === 'stt';
-  return `import type { ModelPort${hasMedia ? ', MediaInput' : ''} } from '@modelport/core';
+  return `import type { ModelPort${hasMedia ? ', MediaInput' : ''} } from '@manojabhiram/modelport-core';
 
 // Server-side: use an existing connection to the selected provider.
 // Your host authenticates the user and derives sessionScope itself.

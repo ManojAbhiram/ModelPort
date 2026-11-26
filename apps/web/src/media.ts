@@ -1,5 +1,5 @@
-import type { MediaInput } from '@modelport/core';
-import { AUDIO_TYPES, IMAGE_TYPES, inputMediaTypes } from '@modelport/core/policy';
+import type { MediaInput } from '@manojabhiram/modelport-core';
+import { AUDIO_TYPES, IMAGE_TYPES, inputMediaTypes } from '@manojabhiram/modelport-core/policy';
 
 export const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
 export { AUDIO_TYPES, IMAGE_TYPES };

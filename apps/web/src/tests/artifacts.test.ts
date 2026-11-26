@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { Approval, RunResult } from '@modelport/core';
+import type { Approval, RunResult } from '@manojabhiram/modelport-core';
 import { exportRecord, requestExample } from '../artifacts';
 
 const approval = {
